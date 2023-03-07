@@ -1,4 +1,4 @@
-import { bonusScheme } from "../src/math";
+import { bonusScheme } from "./math";
 
 const mockedIs25PercentChanceTrue = () => true;
 const mockedIs25PercentChanceFalse = () => false;
