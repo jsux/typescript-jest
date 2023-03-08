@@ -1,11 +1,5 @@
 import { bonusScheme } from "../src/math";
 // import { is25PercentChance } from "../src/probablityCalc";
-
-// test.js
-// jest.mock("../src/probablityCalc", () => ({
-//   is25PercentChance: jest.fn(() => true),
-// }));
-
 jest.mock("../src/probablityCalc", () => {
   return {
     is25PercentChance: jest.fn(() => true),
@@ -36,7 +30,6 @@ test.each(cases)(
 );
 
 test("returns 50% of deposite when deposite > £10, ", () => {
-  //   is25PercentChance.mockReturnValue(true);
   expect(bonusScheme(50.4)).toBe(25.2);
   expect(bonusScheme(50.45)).toBe(25.23);
 });
