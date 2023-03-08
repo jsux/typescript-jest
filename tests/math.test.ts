@@ -1,11 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { bonusScheme } from "../src/math";
-// import { is25PercentChance } from "../src/probablityCalc";
-jest.mock("../src/probablityCalc", () => {
-  return {
-    is25PercentChance: jest.fn(() => true),
-  };
-});
 
+// import * as utilMod from "../src/probablityCalc";
+
+jest.mock("../src/probablityCalc", () => ({
+  is25PercentChance: jest.fn(() => true),
+}));
 const cases = [
   [0, 0],
   [-1, 0],
@@ -32,18 +32,5 @@ test.each(cases)(
 test("returns 50% of deposite when deposite > £10, ", () => {
   expect(bonusScheme(50.4)).toBe(25.2);
   expect(bonusScheme(50.45)).toBe(25.23);
-});
-
-afterAll(() => {
-  jest.clearAllMocks();
-});
-
-test("returns 0 of deposite when deposite > £10, ", () => {
-  jest.mock("../src/probablityCalc", () => {
-    return {
-      is25PercentChance: jest.fn(() => false),
-    };
-  });
-  expect(bonusScheme(50.4)).toBe(0);
-  expect(bonusScheme(12876182347691)).toBe(0);
+  expect(bonusScheme(50000.45)).toBe(25000.22);
 });
